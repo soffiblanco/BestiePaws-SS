@@ -1,25 +1,27 @@
-import logo from './logo.svg';
+
 import './App.css';
+import NavBar from './layouts/Header/NavBar';
+import { useState } from 'react';
+import HomeComponent from './components/HomeComponent';
+import SignupForm from './components/loginComponent/SignupForm';
+import LoginForm from './components/loginComponent/LoginForm';
+
 
 function App() {
+  const [currentComponent, setCurrentComponent] = useState(<LoginForm/>);
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+       <NavBar setCurrentComponent={setCurrentComponent}/>
+        {currentComponent}
       </header>
-    </div>
-  );
-}
 
-export default App;
+    
+    </div>
+    );
+};
+
+    export default App;
+
+
