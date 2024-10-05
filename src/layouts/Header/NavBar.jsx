@@ -1,32 +1,46 @@
-import React from 'react';
-import './NavBar.css'
-import  {IoSearchSharp} from "react-icons/io5";
+import React, { useState } from 'react';
+import './NavBar.css';
+import { IoSearchSharp, IoMenuSharp } from "react-icons/io5";
 
-const NavBar = () => {
-return (
-    <div className= 'navbar'>
-        <img src='' alt='' className='logo'/>
+const Navbar = () => {
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [activeItem, setActiveItem] = useState('Home');
 
-        <ul>
-            <li>Home</li>
-            <li>Products</li>
-            <li>Features</li>
-            <li>About</li>
+    const toggleMenu = () => {
+        setIsMenuOpen(!isMenuOpen);
+    };
 
-        </ul>
+    const handleItemClick = (item) => {
+        setActiveItem(item);
+        setIsMenuOpen(false);
+    };
 
-        <div className='search-box'>
+    return (
+        <div className='NavBar'>
+            <div className="menu-toggle" onClick={toggleMenu}>
+                <IoMenuSharp />
+            </div>
+
+            <ul className={`nav-list ${isMenuOpen ? 'active' : ''}`}>
+                {['Home', 'Blog', 'About Us', 'Login', 'Sign Up'].map((item) => (
+                    <li key={item}
+                        onClick={() => handleItemClick(item)}
+                        className={activeItem === item ? 'active' : ''}
+                    >
+                        {item}
+                    </li>
+                ))}
+            </ul>
             
-            Search <IoSearchSharp />
+            <div className='search-box'>
+                <input type="text" placeholder='Search' />
+                <IoSearchSharp className='search-icon' />
+            </div>
         </div>
-
-        <img src='' alt='' className='toggle-icon'/>
-
-    </div>
-)
+    );
 }
 
-export default NavBar;
+export default Navbar;
 
 
 
