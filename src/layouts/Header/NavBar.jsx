@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom'; // Importa Link
+import { Link } from 'react-router-dom';
 import './NavBar.css';
 import { IoSearchSharp, IoMenuSharp } from "react-icons/io5";
 
@@ -28,9 +28,6 @@ const Navbar = () => {
                 ))}
                 <li>
                     <Link to="/login" onClick={() => setActiveItem('Login')}>Login</Link>
-                </li>
-                <li>
-                    <Link to="/signup" onClick={() => setActiveItem('Sign Up')}>Sign Up</Link>
                 </li>
             </ul>
             
