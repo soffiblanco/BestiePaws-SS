@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import './SignupForm.css';
+import './LoginForm.css';
 import {FaUser, FaLock} from "react-icons/fa";
 
 const LoginForm = () => {

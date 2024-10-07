@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom'; // Importa Link
 import './NavBar.css';
 import { IoSearchSharp, IoMenuSharp } from "react-icons/io5";
 
@@ -10,11 +11,6 @@ const Navbar = () => {
         setIsMenuOpen(!isMenuOpen);
     };
 
-    const handleItemClick = (item) => {
-        setActiveItem(item);
-        setIsMenuOpen(false);
-    };
-
     return (
         <div className='NavBar'>
             <div className="menu-toggle" onClick={toggleMenu}>
@@ -22,14 +18,20 @@ const Navbar = () => {
             </div>
 
             <ul className={`nav-list ${isMenuOpen ? 'active' : ''}`}>
-                {['Home', 'Blog', 'About Us', 'Login', 'Sign Up'].map((item) => (
+                {['Home', 'Blog', 'About Us'].map((item) => (
                     <li key={item}
-                        onClick={() => handleItemClick(item)}
+                        onClick={() => setActiveItem(item)}
                         className={activeItem === item ? 'active' : ''}
                     >
-                        {item}
+                        <Link to={`/${item.toLowerCase().replace(' ', '-')}`}>{item}</Link>
                     </li>
                 ))}
+                <li>
+                    <Link to="/login" onClick={() => setActiveItem('Login')}>Login</Link>
+                </li>
+                <li>
+                    <Link to="/signup" onClick={() => setActiveItem('Sign Up')}>Sign Up</Link>
+                </li>
             </ul>
             
             <div className='search-box'>
@@ -41,6 +43,8 @@ const Navbar = () => {
 }
 
 export default Navbar;
+
+
 
 
 
