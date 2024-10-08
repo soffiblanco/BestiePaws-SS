@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navbar from './layouts/Header/NavBar';
 import SignupForm from './components/loginComponent/SignupForm';
 import LoginForm from '././components/loginComponent/LoginForm'
+import ItemCatalog from './components/Catalog/ItemCatalog';
 
 function App() {
     return (
@@ -13,6 +14,7 @@ function App() {
                     <Navbar />
                     <Routes>
                         <Route path="/login" element={<LoginForm />} />
+                        <Route path="/catalog" element={<ItemCatalog/>}/>
                     </Routes>
                 </header>
             </div>

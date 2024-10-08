@@ -18,7 +18,7 @@ const Navbar = () => {
             </div>
 
             <ul className={`nav-list ${isMenuOpen ? 'active' : ''}`}>
-                {['Home', 'Blog', 'About Us'].map((item) => (
+                {['Home', 'Categorías', 'About Us'].map((item) => (
                     <li key={item}
                         onClick={() => setActiveItem(item)}
                         className={activeItem === item ? 'active' : ''}
@@ -26,6 +26,9 @@ const Navbar = () => {
                         <Link to={`/${item.toLowerCase().replace(' ', '-')}`}>{item}</Link>
                     </li>
                 ))}
+                <li>
+                    <Link to="/catalog" onClick={() => setActiveItem('Catálogo')}>Catálogo</Link>
+                </li>
                 <li>
                     <Link to="/login" onClick={() => setActiveItem('Login')}>Login</Link>
                 </li>
