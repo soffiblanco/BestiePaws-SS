@@ -1,43 +1,53 @@
-import React from 'react'
-import './NavBar.css'
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import './NavBar.css';
 import { IoSearchSharp, IoMenuSharp } from "react-icons/io5";
-import { useState } from 'react';
 
 const Navbar = () => {
-
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const [activeItem, setActiveItem] = useState('Home')
+    const [activeItem, setActiveItem] = useState('Home');
 
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
     };
-    const handleItemClick = (item) => {
-        setActiveItem(item);
-        setIsMenuOpen(false);
-    };
 
     return (
         <div className='NavBar'>
-           <div class="menu-toggle" onClick={toggleMenu}>
-            < IoMenuSharp />
-           </div>
+            <div className="menu-toggle" onClick={toggleMenu}>
+                <IoMenuSharp />
+            </div>
 
             <ul className={`nav-list ${isMenuOpen ? 'active' : ''}`}>
-                {['Home', 'Blog', 'About Us', 'Login', 'Sign Up'].map((item)=>(
+                {['Home', 'Categorías', 'About Us'].map((item) => (
                     <li key={item}
-                    onClick={()=> handleItemClick(item)}
-                    className={activeItem === item ? 'active':''}
+                        onClick={() => setActiveItem(item)}
+                        className={activeItem === item ? 'active' : ''}
                     >
-                        {item}
+                        <Link to={`/${item.toLowerCase().replace(' ', '-')}`}>{item}</Link>
                     </li>
                 ))}
+                <li>
+                    <Link to="/catalog" onClick={() => setActiveItem('Catálogo')}>Catálogo</Link>
+                </li>
+                <li>
+                    <Link to="/login" onClick={() => setActiveItem('Login')}>Login</Link>
+                </li>
             </ul>
-        <div className='search-box'>
-            <input type="text" placeholder='Search'/>
-            <IoSearchSharp className='search-icon'/>
+            
+            <div className='search-box'>
+                <input type="text" placeholder='Search' />
+                <IoSearchSharp className='search-icon' />
+            </div>
         </div>
-        </div>
-    )
+    );
 }
 
-export default Navbar
+export default Navbar;
+
+
+
+
+
+
+
+
