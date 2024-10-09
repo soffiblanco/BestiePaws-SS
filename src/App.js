@@ -1,18 +1,25 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
-import CardOriginal from './components/Card';
-import NavBarReal from './layouts/header/NavBar';
-
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Navbar from './layouts/Header/NavBar';
+import SignupForm from './components/loginComponent/SignupForm';
+import LoginForm from '././components/loginComponent/LoginForm'
+import ItemCatalog from './components/Catalog/ItemCatalog';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-       
-        <NavBarReal/>
-      </header>
-    </div>
-  );
+    return (
+        <Router>
+            <div className="App">
+                <header className="App-header">
+                    <Navbar />
+                    <Routes>
+                        <Route path="/login" element={<LoginForm />} />
+                        <Route path="/catalog" element={<ItemCatalog/>}/>
+                    </Routes>
+                </header>
+            </div>
+        </Router>
+    );
 }
 
 export default App;
